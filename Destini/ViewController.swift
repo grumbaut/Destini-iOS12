@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var storyTextView: UILabel!
     
     // TODO Step 5: Initialise instance variables here
-    
+    var index: Int = 1
     
     
     
@@ -44,7 +44,20 @@ class ViewController: UIViewController {
         
         
         // TODO Step 3: Set the text for the storyTextView, topButton, bottomButton, and to T1_Story, T1_Ans1, and T1_Ans2
+        storyTextView.text = story1
+        topButton.setTitle(answer1a, for: .normal)
+        bottomButton.setTitle(answer1b, for: .normal)
         
+    }
+    
+    func setButtons(topText: String, bottomText: String) {
+        topButton.setTitle(topText, for: .normal)
+        bottomButton.setTitle(bottomText, for: .normal)
+    }
+    
+    func hideButtons(hideTop: Bool, hideBottom: Bool) {
+        topButton.isHidden = hideTop
+        bottomButton.isHidden = hideBottom
     }
 
     
@@ -52,6 +65,31 @@ class ViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton) {
     
         // TODO Step 4: Write an IF-Statement to update the views
+        if sender.tag == 1 {
+            if index == 1 || index == 2 {
+                index = 3
+                storyTextView.text = story3
+                setButtons(topText: answer3a, bottomText: answer3b)
+            } else if index == 3 {
+                index = 6
+                storyTextView.text = story6
+                hideButtons(hideTop: true, hideBottom: true)
+            }
+        } else if sender.tag == 2 {
+            if index == 1 {
+                index = 2
+                storyTextView.text = story2
+                setButtons(topText: answer2a, bottomText: answer2b)
+            } else if index == 2 {
+                index = 4
+                storyTextView.text = story4
+                hideButtons(hideTop: true, hideBottom: true)
+            } else if index == 3 {
+                index = 5
+                storyTextView.text = story5
+                hideButtons(hideTop: true, hideBottom: true)
+            }
+        }
                 
         // TODO Step 6: Modify the IF-Statement to complete the story
         
